@@ -1,21 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nickgeleedst
- * Date: 13/03/2018
- * Time: 12:42
- */
 
 namespace Drupal\bluebirdday_jms;
 
+use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use JMS\Serializer\SerializerInterface;
 
 /**
  * Serializer wrapper class.
  */
-class Serializer {
+class Serializer implements SerializerInterface {
 
   protected $serializer;
 
@@ -25,40 +21,22 @@ class Serializer {
   public function __construct() {
     AnnotationRegistry::registerLoader('class_exists');
     $this->serializer = SerializerBuilder::create()
-     ->setSerializationContextFactory(function () {
-       return SerializationContext::create()->setSerializeNull(TRUE);
-     })->build();
+      ->setSerializationContextFactory(function () {
+        return SerializationContext::create()->setSerializeNull(TRUE);
+      })->build();
   }
 
   /**
-   * Serialize the given data to a specific format.
-   *
-   * @param mixed $data
-   *   Original data.
-   * @param string $format
-   *   The format we want to serialize to.
-   *
-   * @return mixed
-   *   Serialized data
+   * {@inheritdoc}
    */
-  public function serialize($data, string $format = 'json') {
+  public function serialize($data, $format, SerializationContext $context = NULL) {
     return $this->serializer->serialize($data, $format);
   }
 
   /**
-   * Deserialze the data.
-   *
-   * @param mixed $data
-   *   Original serialized data.
-   * @param mixed $type
-   *   Class to deserialize to.
-   * @param string $format
-   *   The format the data is in.
-   *
-   * @return mixed
-   *   Returns the deserialized data
+   * {@inheritdoc}
    */
-  public function deserialize($data, $type, string $format = 'json') {
+  public function deserialize($data, $type, $format, DeserializationContext $context = NULL) {
     if (is_object($data)) {
       $data = json_encode($data);
     }
