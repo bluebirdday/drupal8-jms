@@ -4,6 +4,5 @@
     "require": {
 	    "jms/serializer": "^1.13"
     },
-    "description": "Bluebird Day drupal 8 module that initiate a JMS service.",
-    "minimum-stability": "dev"
+    "description": "Bluebird Day drupal 8 module that initiate a JMS service."
 }
