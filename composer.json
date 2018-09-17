@@ -2,7 +2,7 @@
     "name": "bluebirdday/drupal8-jms",
     "type": "drupal-module",
     "require": {
-	    "jms/serializer": "^1.13"
+	    "jms/serializer": "^1.*"
     },
     "description": "Bluebird Day drupal 8 module that initiate a JMS service.",
     "minimum-stability": "dev"
