@@ -36,7 +36,7 @@ class Serializer implements SerializerInterface {
   /**
    * {@inheritdoc}
    */
-  public function deserialize($data, $type, $format, DeserializationContext $context = NULL) {
+  public function deserialize($data, $type, $format = 'json', DeserializationContext $context = NULL) {
     if (is_object($data)) {
       $data = json_encode($data);
     }
