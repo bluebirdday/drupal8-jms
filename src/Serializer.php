@@ -29,7 +29,7 @@ class Serializer implements SerializerInterface {
   /**
    * {@inheritdoc}
    */
-  public function serialize($data, $format, SerializationContext $context = NULL) {
+  public function serialize($data, $format = 'json', SerializationContext $context = NULL) {
     return $this->serializer->serialize($data, $format);
   }
 
